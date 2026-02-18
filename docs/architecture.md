@@ -1,4 +1,8 @@
 # System Architecture Overview
+This document describes the high-level architecture of the BaaS_RIAL backend.
+The system is designed as a database-first fintech backend that supports
+USD-denominated wallets, internal transfers, and future integration with
+Banking-as-a-Service (BaaS) providers.
 
 ## Purpose
 
@@ -19,10 +23,33 @@ that separates:
 - Internal ledger system (double-entry, upcoming)
 - BaaS partner integration (planned)
 
-## Core Design Principles
+## Core Architectural Principles
 
-1. Database-first design
-2. Money is represented via ledger entries, not balances
-3. Wallets are containers, not accounts
-4. Strong referential integrity and auditability
-5. Separation between internal state and external banking rails
+1. Database-first design 
+   The database is the authoritative source of truth. Application logic
+   must conform to database constraints, not the other way around.
+
+2. Separation of concerns 
+   - Users represent identity
+   - Wallets represent ownership and currency context
+   - Ledgers represent money
+
+3. No balance mutation 
+   Account balances are derived from ledger entries, never stored directly.
+
+4. Auditability by design
+   All financial state changes must be reconstructable from historical data.
+
+5. Clear custody boundaries 
+   The system does not act as a bank and does not custody funds directly.
+
+
+## Conceptual Data Model
+
+At a high level:
+
+- A User represents a person using the system.
+- A User owns one Wallet per currency.
+- A Wallet defines currency context and control (e.g. frozen state).
+- Money is represented through Ledger Accounts associated with wallets.
+- All monetary changes are recorded as Ledger Entries.
