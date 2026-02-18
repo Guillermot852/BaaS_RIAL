@@ -1,25 +1,29 @@
-#Run with:
+# BaaS_RIAL — Backend Infrastructure (Learning / Prototype)
 
+This repository contains the initial backend infrastructure for a **BaaS-style neobank system**, focused on:
+- PostgreSQL
+- Docker / Docker Compose
+- Production-grade database design
+- Ledger-based financial architecture (work in progress)
+
+This project is currently in the **database and infrastructure design phase**.
+
+---
+
+## Tech Stack
+
+- **PostgreSQL 15** (Dockerized)
+- **pgAdmin 4** (Web UI for database management)
+- **Docker Compose**
+- Git (version-controlled schema)
+
+---
+
+## Getting Started
+
+### 1. Start the services
+
+From the project root:
+
+```bash
 docker compose up -d
-
-
-#Stop running with:
-
-docker compose down
-
-
-#Check if it's running with:
-
-docker ps
-
-
-#Connect to PostgreSQL Inside Container:
-
-docker exec -it neobank_db psql -U postgres -d neobank
-
-
-#access the postgreSQL through the web:
-http://127.0.0.1:5050/login?next=/
-
-Email: admin@neobank.com
-Password: admin
