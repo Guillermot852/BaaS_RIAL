@@ -27,3 +27,5 @@ From the project root:
 
 ```bash
 docker compose up -d
+
+docker exec -it neobank_db psql -U postgres -d neobank

@@ -49,3 +49,20 @@ The `wallets` table represents a logical container for funds.
 
 ### Relationships
 - wallets.user_id → users.user_id (FK)
+
+---
+
+## Ledger Accounts Table
+
+Ledger accounts represent accounting entities used for double-entry bookkeeping.
+
+They do not store balances directly. All monetary state is derived from
+ledger entries.
+
+Account types:
+- user_wallet
+- platform_revenue
+- platform_clearing
+- baas_custody
+- suspense
+
