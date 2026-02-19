@@ -108,6 +108,48 @@ ON ledger_accounts (account_type, currency)
 WHERE account_type = 'baas_custody';
 
 -- =========================
+-- TRANSACTIONS
+-- =========================
+
+CREATE TABLE transactions (
+    transaction_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+
+    transaction_type TEXT NOT NULL
+        CHECK (transaction_type IN (
+            'internal_transfer',
+            'deposit',
+            'withdrawal',
+            'fee'
+        )),
+
+    status TEXT NOT NULL DEFAULT 'pending'
+        CHECK (status IN (
+            'pending',
+            'completed',
+            'failed',
+            'reversed'
+        )),
+
+    currency CHAR(3) NOT NULL DEFAULT 'USD'
+        CHECK (currency = 'USD'),
+
+    amount NUMERIC(18,2) NOT NULL
+        CHECK (amount > 0),
+
+    reference TEXT,
+    idempotency_key TEXT UNIQUE,
+
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    completed_at TIMESTAMPTZ
+);
+
+CREATE INDEX idx_transactions_status
+ON transactions (status);
+
+CREATE INDEX idx_transactions_created_at
+ON transactions (created_at);
+
+-- =========================
 -- LEDGER ENTRIES
 -- =========================
 
@@ -133,4 +175,5 @@ ON ledger_entries (transaction_id);
 
 CREATE INDEX IF NOT EXISTS idx_ledger_entries_account
 ON ledger_entries (account_id);
+
 
