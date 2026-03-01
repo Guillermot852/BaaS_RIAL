@@ -199,3 +199,8 @@ not permitted.
 
 Transactions may reference a related transaction to support reversals
 and refunds without modifying historical data.
+
+### Reconciliations
+
+Suspense accounts are used to isolate funds involved in unresolved
+reconciliation discrepancies.
