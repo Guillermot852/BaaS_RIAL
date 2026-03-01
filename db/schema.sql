@@ -176,4 +176,18 @@ ON ledger_entries (transaction_id);
 CREATE INDEX IF NOT EXISTS idx_ledger_entries_account
 ON ledger_entries (account_id);
 
+-- ================
+-- IMMUTABILITY
+-- ================
 
+CREATE OR REPLACE FUNCTION prevent_ledger_entry_modification()
+RETURNS trigger AS $$
+BEGIN
+    RAISE EXCEPTION 'Ledger entries are immutable';
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER ledger_entries_no_update
+BEFORE UPDATE OR DELETE ON ledger_entries
+FOR EACH ROW
+EXECUTE FUNCTION prevent_ledger_entry_modification();

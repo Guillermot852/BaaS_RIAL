@@ -179,3 +179,18 @@ Balances are computed dynamically by aggregating ledger entries:
 
 This approach ensures auditability, consistency, and resistance to data corruption.
 
+### Idempotency
+
+Transactions may include an optional `idempotency_key`, which uniquely
+identifies a specific financial intent.
+
+The database enforces a uniqueness constraint on the idempotency key,
+ensuring that at most one transaction exists for a given intent.
+
+Idempotency semantics and retry behavior are defined at the execution
+layer and documented at Idempotency.md.
+
+### Immutability
+
+Ledger entries are immutable and append-only. Updates or deletions are
+not permitted.
