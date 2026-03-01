@@ -191,3 +191,10 @@ CREATE TRIGGER ledger_entries_no_update
 BEFORE UPDATE OR DELETE ON ledger_entries
 FOR EACH ROW
 EXECUTE FUNCTION prevent_ledger_entry_modification();
+
+-- ================
+-- REVERSALS
+-- ================
+
+related_transaction_id UUID
+    REFERENCES transactions(transaction_id);

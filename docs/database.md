@@ -194,3 +194,8 @@ layer and documented at Idempotency.md.
 
 Ledger entries are immutable and append-only. Updates or deletions are
 not permitted.
+
+### Reversals
+
+Transactions may reference a related transaction to support reversals
+and refunds without modifying historical data.
