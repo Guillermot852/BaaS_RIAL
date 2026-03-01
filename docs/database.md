@@ -209,3 +209,8 @@ reconciliation discrepancies.
 
 The ledger-based design enables full observability and auditability
 through read-only queries over immutable data.
+
+### Limits and Controls
+
+Financial transactions are subject to pre-execution limits and controls
+that may prevent execution without altering ledger state.
