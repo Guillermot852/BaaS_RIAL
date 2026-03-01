@@ -204,3 +204,8 @@ and refunds without modifying historical data.
 
 Suspense accounts are used to isolate funds involved in unresolved
 reconciliation discrepancies.
+
+### Observability and Auditability
+
+The ledger-based design enables full observability and auditability
+through read-only queries over immutable data.
