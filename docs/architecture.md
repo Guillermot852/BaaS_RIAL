@@ -1,7 +1,7 @@
 # System Architecture Overview
 This document describes the high-level architecture of the BaaS_RIAL backend.
 The system is designed as a database-first fintech backend that supports
-USD-denominated wallets, internal transfers, and future integration with
+USD-denominated wallets, internal transfers, and integration with
 Banking-as-a-Service (BaaS) providers.
 
 ## Purpose
